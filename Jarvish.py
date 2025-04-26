@@ -6,17 +6,14 @@ import webbrowser
 import sys
 import google.generativeai as genai
 
-# apni real API key yahan daal
+
 genai.configure(api_key="AIzaSyDSmXq0UrJiqUD6uUCz9AOupOL0lh0MDmU")
 
 def ask_gemini(question):
-    model = genai.GenerativeModel('gemini-1.5-flash')  # <- yeh sahi model name hai
+    model = genai.GenerativeModel('gemini-1.5-flash') 
     response = model.generate_content(question)
-    return response.text
-
-
-
-# Initialize text to speech engine
+    return response.text\
+    
 engine = pyttsx3.init()
 
 def speak(text):
@@ -81,10 +78,10 @@ if __name__ == "__main__":
                 strTime = datetime.datetime.now().strftime("%H:%M:%S")
                 speak(f"The time is {strTime}")
 
-            elif s in query:  # Correct spelling
+            elif 'ruk ja bhai' in query or 'bye' in query:
+                speak("Okay, bye!")
+                sys.exit()
+
+            elif s in query: 
                 answer = ask_gemini(query)
                 speak(answer)
-
-            elif 'ruk ja bhai' in query or 'bye' in query:
-                speak("Okay, bye! Ruk raha hoon.")
-                sys.exit()
