@@ -5,6 +5,7 @@ import pyjokes
 import webbrowser
 import sys
 import google.generativeai as genai
+import time
 
 
 genai.configure(api_key="AIzaSyDSmXq0UrJiqUD6uUCz9AOupOL0lh0MDmU")
@@ -20,6 +21,7 @@ def speak(text):
     print(f"Dhanno: {text}")
     engine.say(text)
     engine.runAndWait()
+   
 
 def wish_me():
     speak("I am Dhanno. How can I help you?")
@@ -84,4 +86,5 @@ if __name__ == "__main__":
 
             elif s in query: 
                 answer = ask_gemini(query)
-                speak(answer)
+                short_answer = ' '.join(answer.split()[:30])
+                speak(short_answer)
